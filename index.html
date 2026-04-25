@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noordermarkt Beef Stew — Business Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2eb;
+    --warm: #c8a96e;
+    --warm-light: #f0e6d0;
+    --warm-dark: #8a6e3e;
+    --red: #b84b3c;
+    --green: #3a6642;
+    --muted: #6b6860;
+    --border: #d8d2c4;
+    --card: #fffdf8;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    text-align: center;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(200,169,110,0.04) 20px,
+      rgba(200,169,110,0.04) 21px
+    );
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-dark);
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  header h1 em {
+    font-style: italic;
+    color: var(--warm-dark);
+  }
+  .header-sub {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  main { padding: 2.5rem 0 4rem; }
+
+  /* Section titles */
+  .section { margin-bottom: 2.5rem; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--warm-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  /* Metric grid */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--border);
+  }
+  .metric {
+    background: var(--card);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .metric-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .metric-value { font-family: var(--serif); font-size: 1.6rem; color: var(--ink); }
+  .metric-sub { font-size: 11px; color: var(--muted); }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    align-items: flex-start;
+    transition: background 0.15s;
+  }
+  .step:first-child { border-radius: 6px 6px 0 0; }
+  .step:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 6px 6px; }
+  .step:hover { background: #fffef5; }
+  .step-num {
+    min-width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--warm-light);
+    color: var(--warm-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-body { flex: 1; }
+  .step-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 3px; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Badges */
+  .badge {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.05em;
+    padding: 2px 7px; border-radius: 3px; display: inline-block;
+  }
+  .badge-warn { background: #fef3e2; color: #8a5a00; border: 1px solid #f0d9a0; }
+  .badge-ok   { background: #e8f3e9; color: #2d5c34; border: 1px solid #b5d9b8; }
+  .badge-info { background: #e6f0fb; color: #1a4a80; border: 1px solid #a8c8f0; }
+
+  /* Financial calculator */
+  .calc-wrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .calc-controls {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-light);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .ctrl-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-dark);
+    margin-bottom: 6px;
+  }
+
+  .ctrl-group select,
+  .ctrl-group input[type="range"] {
+    width: 100%;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 10px center;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 7px 30px 7px 10px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  select:focus { outline: 2px solid var(--warm); outline-offset: 1px; }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--warm-dark);
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+  .slider-display {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted); margin-top: 4px;
+  }
+  .slider-current { font-weight: 500; color: var(--warm-dark); }
+
+  .calc-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .results-col {
+    padding: 1.25rem 1.5rem;
+    border-right: 1px solid var(--border);
+  }
+  .results-col:last-child { border-right: none; }
+
+  .results-title { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+
+  .cost-line {
+    display: flex; justify-content: space-between;
+    font-size: 13px; padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    color: var(--muted);
+  }
+  .cost-line:last-of-type { border-bottom: none; }
+  .cost-line.total {
+    font-weight: 500; color: var(--ink); font-size: 14px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px; padding-top: 8px;
+  }
+  .profit-line {
+    display: flex; justify-content: space-between;
+    font-family: var(--serif); font-size: 1.5rem;
+    padding: 8px 0 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .profit-line .profit-val { color: var(--green); }
+  .annual-box {
+    background: var(--warm-light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--warm-dark);
+    line-height: 1.5;
+  }
+  .annual-box strong { font-weight: 500; color: var(--warm-dark); font-size: 15px; }
+
+  /* Market fit bar */
+  .feasibility-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .feat-item {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .feat-label { font-size: 12px; color: var(--muted); }
+  .feat-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .feat-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+  .feat-score { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+  /* Verdict */
+  .verdict {
+    border-left: 3px solid var(--warm);
+    padding: 1rem 1.25rem;
+    background: var(--warm-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  .verdict strong { font-weight: 500; }
+
+  /* Alternatives */
+  .alt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .alt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .alt-card:hover { border-color: var(--warm); box-shadow: 0 2px 12px rgba(200,169,110,0.12); }
+  .alt-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .alt-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* Cost breakdown table */
+  .breakdown-table { width: 100%; border-collapse: collapse; }
+  .breakdown-table tr { border-bottom: 1px solid var(--border); }
+  .breakdown-table tr:last-child { border-bottom: none; font-weight: 500; color: var(--ink); }
+  .breakdown-table td { padding: 7px 0; font-size: 13px; }
+  .breakdown-table td:last-child { text-align: right; color: var(--ink); }
+  .breakdown-table td:first-child { color: var(--muted); }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .calc-results { grid-template-columns: 1fr; }
+    .results-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .results-col:last-child { border-bottom: none; }
+    .alt-grid { grid-template-columns: 1fr; }
+    .feasibility-grid { grid-template-columns: 1fr; }
+    header { padding: 2rem 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">Market stall feasibility study &mdash; Amsterdam 2025</div>
+    <h1>Beef Stew at the<br><em>Noordermarkt</em></h1>
+    <p class="header-sub">A practical guide to permits, costs, and whether it's actually worth it</p>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+  <!-- Overview metrics -->
+  <div class="section">
+    <div class="section-label">At a glance</div>
+    <div class="metric-grid">
+      <div class="metric">
+        <span class="metric-label">Market</span>
+        <span class="metric-value" style="font-size:1.1rem; padding-top:4px;">Noordermarkt</span>
+        <span class="metric-sub">Saturday Boerenmarkt</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Access model</span>
+        <span class="metric-value" style="font-size:1.1rem; padding-top:4px;">Waiting list</span>
+        <span class="metric-sub">€25/yr to stay listed</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Stall fee / day</span>
+        <span class="metric-value">~€35</span>
+        <span class="metric-sub">€15–20 market + €15 kraam</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Est. startup cost</span>
+        <span class="metric-value">€1–2k</span>
+        <span class="metric-sub">Equipment + permits</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">BTW rate (food)</span>
+        <span class="metric-value">9%</span>
+        <span class="metric-sub">KOR exempt under €20k/yr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Permit roadmap -->
+  <div class="section">
+    <div class="section-label">Permit &amp; registration roadmap</div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">KVK registration</span>
+            <span class="badge badge-ok">Required first</span>
+          </div>
+          <p class="step-desc">Register your food business at the Kamer van Koophandel (Chamber of Commerce). This is the legal foundation — tax authority and NVWA are automatically notified. One-time cost: ~€75. Book an appointment at De Ruijterkade 5, Amsterdam.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">NVWA registration</span>
+            <span class="badge badge-warn">Mandatory — beef = animal origin</span>
+          </div>
+          <p class="step-desc">Register with the Nederlandse Voedsel en Waren Autoriteit via their Message Box portal. Because you're selling beef (raw animal-origin product), you may need full accreditation, not just registration. Free to file, but requires KVK number first. Unannounced inspections happen.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">HACCP plan or approved hygiene code</span>
+            <span class="badge badge-ok">Required</span>
+          </div>
+          <p class="step-desc">Either follow an approved sector hygiene code (available from Koninklijke Horeca Nederland, ~€100) or draft your own HACCP plan. No personal diploma is required — the plan itself must be implemented and documented. Covers food storage temps, allergen labelling, hand-washing, and pest control.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Register Ambulante Handel</span>
+            <span class="badge badge-ok">Required</span>
+          </div>
+          <p class="step-desc">Inschrijving in the Register Ambulante Handel at Gemeente Amsterdam — visit the publieksbalie in person (Markten afdeling). Cost: €55.90/yr in 2025, renewed annually. Gives you the right to show up as a day vendor on markets you're registered for while you wait for a fixed spot.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Noordermarkt waiting list</span>
+            <span class="badge badge-warn">Competitive — can take 1–3 years</span>
+          </div>
+          <p class="step-desc">The organic Boerenmarkt side is category-based — a stall only opens when a vendor quits. Download the form at biologischenoordermarkt.nl and pay €25/yr to stay on the list. Hot prepared food is capped at 5% of total stalls by Amsterdam's market rules, making the wait for this category especially slow.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Mobile stall setup</span>
+            <span class="badge badge-warn">NVWA inspected</span>
+          </div>
+          <p class="step-desc">Your setup must be easy to clean, have hand-washing provisions (hot + cold water), food-safe storage (perishables at 0–4°C), and allergen labelling on clear display. Inspections are unannounced — make sure the setup is inspection-ready every Saturday.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">BTW / VAT registration</span>
+            <span class="badge badge-info">May be optional</span>
+          </div>
+          <p class="step-desc">Food sales are taxed at 9% BTW. If annual turnover stays below ~€20,000 the KOR (kleineondernemersregeling / small business scheme) lets you skip charging VAT entirely — very useful if this is a side venture alongside your main job.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Financial calculator -->
+  <div class="section">
+    <div class="section-label">Financial model — live calculator</div>
+    <div class="calc-wrapper">
+
+      <div class="calc-controls">
+        <div class="ctrl-group">
+          <label for="scenario">Scenario</label>
+          <select id="scenario" onchange="recalc()">
+            <option value="conservative">Conservative (40 portions)</option>
+            <option value="moderate" selected>Moderate (70 portions)</option>
+            <option value="optimistic">Optimistic (100 portions)</option>
+          </select>
+        </div>
+
+        <div class="ctrl-group">
+          <label for="price-slider">Price per portion</label>
+          <input type="range" id="price-slider" min="5" max="20" step="0.5" value="10" oninput="recalc()">
+          <div class="slider-display">
+            <span>€5</span>
+            <span class="slider-current" id="price-display">€10.00</span>
+            <span>€20</span>
+          </div>
+        </div>
+
+        <div class="ctrl-group">
+          <label for="weeks-slider">Market days per year</label>
+          <input type="range" id="weeks-slider" min="10" max="52" step="1" value="48" oninput="recalc()">
+          <div class="slider-display">
+            <span>10</span>
+            <span class="slider-current" id="weeks-display">48 days</span>
+            <span>52</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="results-col">
+          <div class="results-title">Revenue &amp; costs — per day</div>
+          <div class="cost-line"><span>Portions sold</span><span id="out-portions">70</span></div>
+          <div class="cost-line"><span>Price per portion</span><span id="out-price">€10.00</span></div>
+          <div class="cost-line"><span>Gross revenue</span><span id="out-gross">€700</span></div>
+          <div class="cost-line" style="margin-top:8px;"><span>Ingredients (per portion)</span><span id="out-ingredient-cost">€210</span></div>
+          <div class="cost-line"><span>Market + kraam fee</span><span>€35</span></div>
+          <div class="cost-line"><span>Transport / fuel</span><span>€25</span></div>
+          <div class="cost-line"><span>Packaging + misc</span><span id="out-packaging">€20</span></div>
+          <div class="cost-line total"><span>Total costs</span><span id="out-total-cost">€290</span></div>
+        </div>
+
+        <div class="results-col">
+          <div class="results-title">Profit summary</div>
+          <div class="profit-line">
+            <span>Net profit / day</span>
+            <span class="profit-val" id="out-profit">€410</span>
+          </div>
+          <div class="cost-line"><span>Margin</span><span id="out-margin">59%</span></div>
+          <div class="cost-line"><span>Break-even portions</span><span id="out-breakeven">—</span></div>
+          <div style="height:12px;"></div>
+          <div class="annual-box">
+            Annualised net profit<br>
+            <strong id="out-annual">€19,680</strong><br>
+            <span style="font-size:12px;" id="out-annual-sub">Based on 48 market days/yr</span>
+          </div>
+          <div style="height:10px;"></div>
+          <div class="annual-box" id="kor-box">
+            <span id="kor-msg">Below €20k — KOR scheme applies, no VAT to charge</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Startup costs -->
+  <div class="section">
+    <div class="section-label">One-time startup costs</div>
+    <div class="card">
+      <table class="breakdown-table">
+        <tr><td>Portable cookware / chafing dishes / warmers</td><td>€300–600</td></tr>
+        <tr><td>Folding table, canopy / market tent</td><td>€200–400</td></tr>
+        <tr><td>Food-safe containers, serving supplies</td><td>€100–200</td></tr>
+        <tr><td>Portable hand-washing station</td><td>€80–150</td></tr>
+        <tr><td>KVK registration</td><td>~€75</td></tr>
+        <tr><td>Register Ambulante Handel (year 1)</td><td>€55.90</td></tr>
+        <tr><td>Noordermarkt waiting list (year 1)</td><td>€25</td></tr>
+        <tr><td>KHN hygiene code booklet (optional)</td><td>~€100</td></tr>
+        <tr><td>Signage and menu boards</td><td>€50–100</td></tr>
+        <tr><td><strong>Total estimate</strong></td><td><strong>€985–1,705</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Feasibility -->
+  <div class="section">
+    <div class="section-label">Feasibility assessment</div>
+    <div class="card" style="margin-bottom:1rem;">
+      <div class="feasibility-grid">
+        <div class="feat-item">
+          <div class="feat-label">Financial appeal</div>
+          <div class="feat-bar"><div class="feat-fill" style="width:72%; background:#3a6642;"></div></div>
+          <div class="feat-score">72 / 100</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">Ease of entry</div>
+          <div class="feat-bar"><div class="feat-fill" style="width:38%; background:#c8a96e;"></div></div>
+          <div class="feat-score">38 / 100</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">Regulatory burden</div>
+          <div class="feat-bar"><div class="feat-fill" style="width:60%; background:#c8a96e;"></div></div>
+          <div class="feat-score">60 / 100</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">Market fit (organic crowd)</div>
+          <div class="feat-bar"><div class="feat-fill" style="width:65%; background:#3a6642;"></div></div>
+          <div class="feat-score">65 / 100</div>
+        </div>
+      </div>
+    </div>
+    <div class="verdict">
+      <strong>Verdict: promising side hustle, but the bottleneck is the waiting list.</strong><br>
+      The financials work out nicely — a solid net per Saturday for one person selling something they genuinely enjoy cooking. The regulation side is manageable: KVK + NVWA registration, a basic hygiene code, and the Ambulante Handel licence are the core hoops. The real friction is that Noordermarkt operates a closed category-based waiting list — spots only open when vendors quit, and prepared hot food is capped at 5% of stalls. Realistically plan for a 1–3 year wait. Parallel strategy: get on the Noordermarkt list now, and look at Lindengracht market (same Saturday, 2 streets over) as a faster entry point with a nearly identical crowd.
+    </div>
+  </div>
+
+  <!-- Alternatives -->
+  <div class="section">
+    <div class="section-label">Alternative markets to consider</div>
+    <div class="alt-grid">
+      <div class="alt-card">
+        <div class="alt-name">Lindengracht market</div>
+        <div class="alt-desc">Two streets from Noordermarkt, same Saturday morning, similar Jordaan crowd. Hot food vendors are already active. More accessible entry than the Boerenmarkt waiting list — good parallel option while you wait.</div>
+      </div>
+      <div class="alt-card">
+        <div class="alt-name">Albert Cuyp markt</div>
+        <div class="alt-desc">Largest daily market in the Netherlands, in De Pijp. More tourist-facing but extremely high foot traffic — potentially higher volume. Your general Ambulante Handel licence gives you access here too.</div>
+      </div>
+      <div class="alt-card">
+        <div class="alt-name">Nieuwmarkt</div>
+        <div class="alt-desc">Central Amsterdam, Saturday organic market. Smaller and more niche but popular with locals. Less competition for a hot prepared food slot — worth contacting the marktmeester directly.</div>
+      </div>
+      <div class="alt-card">
+        <div class="alt-name">Foodhallen (indoor)</div>
+        <div class="alt-desc">Indoor food market in Amsterdam West, open daily. Fully covered — good for winter. Different format (permanent unit, not weekly market stall) but worth exploring as a next-stage option.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key contacts -->
+  <div class="section">
+    <div class="section-label">Key contacts &amp; links</div>
+    <div class="card">
+      <table class="breakdown-table">
+        <tr><td>Noordermarkt waiting list form</td><td><a href="https://www.biologischenoordermarkt.nl/en/" style="color:var(--warm-dark);">biologischenoordermarkt.nl</a></td></tr>
+        <tr><td>Gemeente Amsterdam — Ambulante Handel</td><td><a href="https://www.amsterdam.nl/veelgevraagd/spullen-of-eten-verkopen-op-de-markt-79863" style="color:var(--warm-dark);">amsterdam.nl/markt</a></td></tr>
+        <tr><td>KVK (Chamber of Commerce)</td><td><a href="https://www.kvk.nl/en/" style="color:var(--warm-dark);">kvk.nl</a> — De Ruijterkade 5, Amsterdam</td></tr>
+        <tr><td>NVWA registration (Message Box)</td><td><a href="https://english.nvwa.nl/" style="color:var(--warm-dark);">english.nvwa.nl</a></td></tr>
+        <tr><td>KHN hygiene code (HACCP)</td><td><a href="https://www.khn.nl/" style="color:var(--warm-dark);">khn.nl</a></td></tr>
+        <tr><td>Municipality phone (general queries)</td><td>14 020</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  Research compiled April 2025 &mdash; verify current fees and waiting list status directly with Gemeente Amsterdam and biologischenoordermarkt.nl
+</footer>
+
+<script>
+const scenarios = {
+  conservative: { portions: 40, ingredientCostPer: 2.50, packaging: 15, transport: 20 },
+  moderate:     { portions: 70, ingredientCostPer: 3.00, packaging: 20, transport: 25 },
+  optimistic:   { portions: 100, ingredientCostPer: 3.50, packaging: 30, transport: 25 }
+};
+
+function fmt(n) {
+  return '€' + n.toLocaleString('nl-NL', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
+
+function recalc() {
+  const s = scenarios[document.getElementById('scenario').value];
+  const price = parseFloat(document.getElementById('price-slider').value);
+  const weeks = parseInt(document.getElementById('weeks-slider').value);
+
+  document.getElementById('price-display').textContent = '€' + price.toFixed(2);
+  document.getElementById('weeks-display').textContent = weeks + ' days';
+
+  const gross = s.portions * price;
+  const ingredientTotal = s.portions * s.ingredientCostPer;
+  const stallFee = 35;
+  const totalCosts = ingredientTotal + stallFee + s.transport + s.packaging;
+  const profit = gross - totalCosts;
+  const margin = gross > 0 ? Math.round((profit / gross) * 100) : 0;
+  const annual = profit * weeks;
+  const breakeven = stallFee + s.transport + s.packaging > 0
+    ? Math.ceil((stallFee + s.transport + s.packaging) / (price - s.ingredientCostPer))
+    : '—';
+
+  document.getElementById('out-portions').textContent = s.portions;
+  document.getElementById('out-price').textContent = '€' + price.toFixed(2);
+  document.getElementById('out-gross').textContent = fmt(gross);
+  document.getElementById('out-ingredient-cost').textContent = fmt(ingredientTotal);
+  document.getElementById('out-packaging').textContent = fmt(s.packaging);
+  document.getElementById('out-total-cost').textContent = fmt(totalCosts);
+  document.getElementById('out-profit').textContent = fmt(profit);
+  document.getElementById('out-margin').textContent = margin + '%';
+  document.getElementById('out-breakeven').textContent = breakeven + ' portions';
+  document.getElementById('out-annual').textContent = fmt(annual);
+  document.getElementById('out-annual-sub').textContent = 'Based on ' + weeks + ' market days/yr';
+
+  const korBox = document.getElementById('kor-box');
+  const korMsg = document.getElementById('kor-msg');
+  if (annual < 20000) {
+    korBox.style.background = '#e8f3e9';
+    korBox.style.border = '1px solid #b5d9b8';
+    korMsg.textContent = 'Below €20k/yr — KOR scheme applies, no VAT to charge ✓';
+    korMsg.style.color = '#2d5c34';
+  } else {
+    korBox.style.background = '#fef3e2';
+    korBox.style.border = '1px solid #f0d9a0';
+    korMsg.textContent = 'Above €20k/yr — BTW (9%) applies, register with Belastingdienst';
+    korMsg.style.color = '#8a5a00';
+  }
+
+  const profitEl = document.getElementById('out-profit');
+  profitEl.style.color = profit >= 0 ? 'var(--green)' : 'var(--red)';
+}
+
+recalc();
+</script>
+</body>
+</html>
